@@ -16,7 +16,9 @@ namespace FairyField.UnitTests
 
         [TestCase(null)]
         [TestCase("")]
-        public void CreateWord_ThrowArgumentException_IfWordIsNullOrEmpty(string word)
+        [TestCase("   ")]
+        [TestCase("asd fgh")]
+        public void CreateWord_ThrowArgumentException_IfWordIsNotSingleNotEmpty(string word)
         {
             Action act = () => new Word(word);
             act.Should().Throw<ArgumentException>();
