@@ -14,10 +14,11 @@ namespace FairyField.UnitTests
             word.HaveClosedLetters.Should().BeTrue();
         }
 
-        [Test]
-        public void CreateWord_ThrowArgumentException_IfWordIsNull()
+        [TestCase(null)]
+        [TestCase("")]
+        public void CreateWord_ThrowArgumentException_IfWordIsNullOrEmpty(string word)
         {
-            Action act = () => new Word(null);
+            Action act = () => new Word(word);
             act.Should().Throw<ArgumentException>();
         }
     }
