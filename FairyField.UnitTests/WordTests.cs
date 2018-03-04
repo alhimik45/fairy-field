@@ -23,12 +23,17 @@ namespace FairyField.UnitTests
             Action act = () => new Word(word);
             act.Should().Throw<ArgumentException>();
         }
-        
-        [Test]
-        public void Word_OpeningAllLetters_NotHasClosedLetters()
+
+        [TestCase("a", new[] {'a'})]
+        public void Word_OpeningAllLetters_NotHasClosedLetters(string w, char[] letters)
         {
-            var word = new Word("a");
-            word.Open('a');
+            var word = new Word(w);
+            foreach (var letter in letters)
+            {
+                word.HaveClosedLetters.Should().BeTrue();
+                word.Open(letter);
+            }
+
             word.HaveClosedLetters.Should().BeFalse();
         }
     }
