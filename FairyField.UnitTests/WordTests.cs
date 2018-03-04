@@ -23,5 +23,13 @@ namespace FairyField.UnitTests
             Action act = () => new Word(word);
             act.Should().Throw<ArgumentException>();
         }
+        
+        [Test]
+        public void Word_OpeningAllLetters_NotHasClosedLetters()
+        {
+            var word = new Word("a");
+            word.Open('a');
+            word.HaveClosedLetters.Should().BeFalse();
+        }
     }
 }
