@@ -24,8 +24,10 @@ namespace FairyField.UnitTests
             act.Should().Throw<ArgumentException>();
         }
 
-        [TestCase("a", new[] {'a'})]
-        public void Word_OpeningAllLetters_NotHasClosedLetters(string w, char[] letters)
+        [TestCase("a", "a")]
+        [TestCase("aa", "a")]
+        [TestCase("ab", "ba")]
+        public void Word_OpenAllLetters_NotHasClosedLetters(string w, string letters)
         {
             var word = new Word(w);
             foreach (var letter in letters)
