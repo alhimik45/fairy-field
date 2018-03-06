@@ -38,5 +38,20 @@ namespace FairyField.UnitTests
 
             word.HaveClosedLetters.Should().BeFalse();
         }
+
+        [TestCase("hello", "l", "**ll*")]
+        [TestCase("hellofdg", "", "********")]
+        [TestCase("hello", "loh", "h*llo")]
+        [TestCase("hello", "lohe", "hello")]
+        public void Word_ReturnsViewWithStarsInsteadCLosedLetters(string w, string letters, string output)
+        {
+            var word = new Word(w);
+            foreach (var letter in letters)
+            {
+                word.Open(letter);
+            }
+
+            word.View.Should().Be(output);
+        }
     }
 }
