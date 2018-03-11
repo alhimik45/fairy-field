@@ -39,14 +39,22 @@ namespace FairyField
             {
                 if (openedLetter == letter)
                 {
-                    rightLetter = true;
-                    closedLetters[i] = false;
+                    if (closedLetters[i])
+                    {
+                        rightLetter = true;
+                        closedLetters[i] = false;
+                    }
                 }
 
                 ++i;
             }
 
             return rightLetter;
+        }
+
+        public bool Open(int letterIndex)
+        {
+            return Open(word[letterIndex]);
         }
     }
 }

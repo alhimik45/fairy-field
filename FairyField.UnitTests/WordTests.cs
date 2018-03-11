@@ -64,5 +64,14 @@ namespace FairyField.UnitTests
             var word = new Word(w);
             word.Open(letter).Should().Be(result);
         }
+
+        [Test]
+        public void Word_OpenByIndexReturnsTrue_IfIndexNotOpenedInWord()
+        {
+            var word = new Word("hello");
+            word.Open(2).Should().BeTrue();
+            word.View.Should().Be("**ll*");
+            word.Open(3).Should().BeFalse();
+        }
     }
 }
