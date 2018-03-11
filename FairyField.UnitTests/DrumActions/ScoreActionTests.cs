@@ -9,14 +9,24 @@ namespace FairyField.UnitTests.DrumActions
     [TestFixture]
     public class ScoreActionTests
     {
+        private ILetterAsk letterAsk;
+        private TextWriter output;
+        private GameState state;
+        private ScoreAction scoreAction;
+
+        [SetUp]
+        public void SetUp()
+        {
+            state = new GameState(new Word("a"));
+            letterAsk = Substitute.For<ILetterAsk>();
+            output = Substitute.For<TextWriter>();
+            scoreAction = new ScoreAction(10, letterAsk, output);
+        }
+
         [Test]
         public void ScoreAction_AddScoreInState_IfLetterGuessedRight()
         {
-            var state = new GameState(new Word("a"));
-            var letterAsk = Substitute.For<ILetterAsk>();
             letterAsk.Ask().Returns(true);
-            var output = Substitute.For<TextWriter>();
-            var scoreAction = new ScoreAction(10, letterAsk, output);
             scoreAction.Act(state);
             letterAsk.Received().Ask();
             output.Received().WriteLine(Arg.Any<string>());
@@ -26,11 +36,7 @@ namespace FairyField.UnitTests.DrumActions
         [Test]
         public void ScoreAction_NotAddScoreInState_IfLetterGuessedWrong()
         {
-            var state = new GameState(new Word("a"));
-            var letterAsk = Substitute.For<ILetterAsk>();
             letterAsk.Ask().Returns(false);
-            var output = Substitute.For<TextWriter>();
-            var scoreAction = new ScoreAction(10, letterAsk, output);
             scoreAction.Act(state);
             letterAsk.Received().Ask();
             state.Scores.Should().Be(0);
