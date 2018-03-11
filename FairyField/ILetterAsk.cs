@@ -2,6 +2,6 @@
 {
     public interface ILetterAsk
     {
-        bool Ask();
+        bool Ask(GameState gameState);
     }
 }

@@ -17,7 +17,7 @@ namespace FairyField.DrumActions
 
         public void Act(GameState gameState)
         {
-            if (letterAsk.Ask())
+            if (letterAsk.Ask(gameState))
             {
                 gameState.Scores += scores;
                 output.WriteLine($"Вы получаете {scores} очков");

@@ -27,12 +27,13 @@ namespace FairyField
                 throw new ArgumentException("cannot contain spaces", nameof(word));
             }
 
-            this.word = word;
+            this.word = word.ToLower();
             closedLetters = word.Select(_ => true).ToList();
         }
 
         public bool Open(char openedLetter)
         {
+            openedLetter = char.ToLower(openedLetter);
             var i = 0;
             var rightLetter = false;
             foreach (var letter in word)

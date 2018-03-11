@@ -24,8 +24,8 @@ namespace FairyField.UnitTests
         [Test]
         public void LetterAsk_ReadsAgain_IfEmptyStringGiven()
         {
-            var letterAsk = new LetterAsk(state, input, output);
-            letterAsk.Ask();
+            var letterAsk = new LetterAsk(input, output);
+            letterAsk.Ask(state);
             input.Received(2).ReadLine();
             output.Received().WriteLine(Arg.Any<string>());
         }
@@ -33,16 +33,16 @@ namespace FairyField.UnitTests
         [Test]
         public void LetterAsk_ReturnsTrue_IfWordHasLetter()
         {
-            var letterAsk = new LetterAsk(state, input, output);
-            letterAsk.Ask().Should().BeTrue();
+            var letterAsk = new LetterAsk(input, output);
+            letterAsk.Ask(state).Should().BeTrue();
         }
 
         [Test]
         public void LetterAsk_ReturnsFalse_IfWordHasNoLetter()
         {
             input.ReadLine().Returns("b");
-            var letterAsk = new LetterAsk(state, input, output);
-            letterAsk.Ask().Should().BeFalse();
+            var letterAsk = new LetterAsk(input, output);
+            letterAsk.Ask(state).Should().BeFalse();
         }
     }
 }

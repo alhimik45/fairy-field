@@ -26,9 +26,9 @@ namespace FairyField.UnitTests.DrumActions
         [Test]
         public void ScoreAction_AddScoreInState_IfLetterGuessedRight()
         {
-            letterAsk.Ask().Returns(true);
+            letterAsk.Ask(state).Returns(true);
             scoreAction.Act(state);
-            letterAsk.Received().Ask();
+            letterAsk.Received().Ask(state);
             output.Received().WriteLine(Arg.Any<string>());
             state.Scores.Should().Be(10);
         }
@@ -36,9 +36,9 @@ namespace FairyField.UnitTests.DrumActions
         [Test]
         public void ScoreAction_NotAddScoreInState_IfLetterGuessedWrong()
         {
-            letterAsk.Ask().Returns(false);
+            letterAsk.Ask(state).Returns(false);
             scoreAction.Act(state);
-            letterAsk.Received().Ask();
+            letterAsk.Received().Ask(state);
             state.Scores.Should().Be(0);
         }
     }
