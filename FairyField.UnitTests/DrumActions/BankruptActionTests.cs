@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace FairyField.UnitTests.DrumActions
 {
     [TestFixture]
-    public class BankruptTests
+    public class BankruptActionTests
     {
         [Test]
         public void BankruptAction_SetsScoresToZero()
