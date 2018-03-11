@@ -73,5 +73,14 @@ namespace FairyField.UnitTests
             word.View.Should().Be("**ll*");
             word.Open(3).Should().BeFalse();
         }
+
+        [TestCase(-100)]
+        [TestCase(500)]
+        public void Word_OpenByIndexReturnsFalse_IfIndexOutOfBounds(int index)
+        {
+            var word = new Word("hello");
+            word.Open(index).Should().BeFalse();
+            word.View.Should().Be("*****");
+        }
     }
 }

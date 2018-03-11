@@ -54,6 +54,11 @@ namespace FairyField
 
         public bool Open(int letterIndex)
         {
+            if (letterIndex >= word.Length || letterIndex < 0)
+            {
+                return false;
+            }
+
             return Open(word[letterIndex]);
         }
     }
