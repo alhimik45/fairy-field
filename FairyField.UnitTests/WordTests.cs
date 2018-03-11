@@ -43,6 +43,7 @@ namespace FairyField.UnitTests
         [TestCase("hellofdg", "", "********")]
         [TestCase("hello", "loh", "h*llo")]
         [TestCase("hello", "lohe", "hello")]
+        [TestCase("hello", "dlasohe", "hello")]
         public void Word_ReturnsViewWithStarsInsteadCLosedLetters(string w, string letters, string output)
         {
             var word = new Word(w);
@@ -52,6 +53,16 @@ namespace FairyField.UnitTests
             }
 
             word.View.Should().Be(output);
+        }
+        
+        [TestCase("hello", 'l', true)]
+        [TestCase("hello", 'h', true)]
+        [TestCase("hello", 'a', false)]
+        [TestCase("hi", 'l', false)]
+        public void Word_OpenReturnsTrue_IfLetterPresentInWord(string w, char letter, bool result)
+        {
+            var word = new Word(w);
+            word.Open(letter).Should().Be(result);
         }
     }
 }

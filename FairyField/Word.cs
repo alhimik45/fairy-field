@@ -31,18 +31,22 @@ namespace FairyField
             closedLetters = word.Select(_ => true).ToList();
         }
 
-        public void Open(char openedLetter)
+        public bool Open(char openedLetter)
         {
             var i = 0;
+            var rightLetter = false;
             foreach (var letter in word)
             {
                 if (openedLetter == letter)
                 {
+                    rightLetter = true;
                     closedLetters[i] = false;
                 }
 
                 ++i;
             }
+
+            return rightLetter;
         }
     }
 }
