@@ -25,7 +25,7 @@ namespace FairyField.UnitTests.DrumActions
         {
             var state = new GameState(new Word("a"));
             var input = Substitute.For<TextReader>();
-            input.ReadLine().Returns("0", "-13", "445", "sdsd","1");
+            input.ReadLine().Returns("0", "-13", "445", "sdsd", "1");
             var letterAction = new LetterAction(input, Substitute.For<TextWriter>());
             letterAction.Act(state);
             state.CurrentWord.View.Should().Be("a");

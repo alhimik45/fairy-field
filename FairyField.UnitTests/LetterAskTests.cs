@@ -20,7 +20,7 @@ namespace FairyField.UnitTests
             input.ReadLine().Returns("", "a");
             state = new GameState(new Word("a"));
         }
-        
+
         [Test]
         public void LetterAsk_ReadsAgain_IfEmptyStringGiven()
         {
@@ -29,14 +29,14 @@ namespace FairyField.UnitTests
             input.Received(2).ReadLine();
             output.Received().WriteLine(Arg.Any<string>());
         }
-        
+
         [Test]
         public void LetterAsk_ReturnsTrue_IfWordHasLetter()
         {
             var letterAsk = new LetterAsk(state, input, output);
             letterAsk.Ask().Should().BeTrue();
         }
-        
+
         [Test]
         public void LetterAsk_ReturnsFalse_IfWordHasNoLetter()
         {
