@@ -23,5 +23,10 @@ namespace FairyField.DrumActions
                 output.WriteLine($"Вы получаете {scores} очков");
             }
         }
+
+        public override string ToString()
+        {
+            return $"+{scores}";
+        }
     }
 }
