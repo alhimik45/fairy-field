@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -27,6 +28,21 @@ namespace FairyField.UnitTests
             letterAsk.Ask();
             input.Received(2).ReadLine();
             output.Received().WriteLine(Arg.Any<string>());
+        }
+        
+        [Test]
+        public void LetterAsk_ReturnsTrue_IfWordHasLetter()
+        {
+            var letterAsk = new LetterAsk(state, input, output);
+            letterAsk.Ask().Should().BeTrue();
+        }
+        
+        [Test]
+        public void LetterAsk_ReturnsFalse_IfWordHasNoLetter()
+        {
+            input.ReadLine().Returns("b");
+            var letterAsk = new LetterAsk(state, input, output);
+            letterAsk.Ask().Should().BeFalse();
         }
     }
 }

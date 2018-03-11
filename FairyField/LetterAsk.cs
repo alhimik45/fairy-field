@@ -25,7 +25,9 @@ namespace FairyField
             }
 
             var letter = s[0];
-            return true;
+            var result = gameState.CurrentWord.Open(letter);
+            output.WriteLine(result ? "Есть такая буква!" : "Уууу :(");
+            return result;
         }
     }
 }
