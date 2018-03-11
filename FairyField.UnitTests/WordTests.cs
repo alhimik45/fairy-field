@@ -54,7 +54,7 @@ namespace FairyField.UnitTests
 
             word.View.Should().Be(output);
         }
-        
+
         [TestCase("hello", 'l', true)]
         [TestCase("hello", 'h', true)]
         [TestCase("hello", 'a', false)]

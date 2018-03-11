@@ -22,7 +22,7 @@ namespace FairyField.UnitTests.DrumActions
             output.Received().WriteLine(Arg.Any<string>());
             state.Scores.Should().Be(10);
         }
-        
+
         [Test]
         public void ScoreAction_NotAddScoreInState_IfLetterGuessedWrong()
         {
