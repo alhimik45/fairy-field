@@ -28,5 +28,10 @@ namespace FairyField
 
             return default(T);
         }
+
+        public int Max()
+        {
+            return elements.Select(e => e.Weight).Sum();
+        }
     }
 }
